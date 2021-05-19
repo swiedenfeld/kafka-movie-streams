@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "The Shawshank Redemption",
+    "year": 1994,
+    "genre": "crime"
+  },
+  {
+    "id": 2,
+    "title": "The Godfather",
+    "year": 1972,
+    "genre": "crime"
+  },
+  {
+    "id": 3,
+    "title": "The Dark Knight",
+    "year": 2008,
+    "genre": "action"
+  },
+  {
+    "id": 4,
+    "title": "12 Angry Men",
+    "year": 1957,
+    "genre": "drama"
+  },
+  {
+    "id": 5,
+    "title": "Schindler's List",
+    "year": 1993,
+    "genre": "drama"
+  },
+  {
+    "id": 6,
+    "title": "The Lord of the Rings: The Return of the King",
+    "year": 2003,
+    "genre": "adventure"
+  },
+  {
+    "id": 7,
+    "title": "Pulp Fiction",
+    "year": 1994,
+    "genre": "crime"
+  },
+  {
+    "id": 8,
+    "title": "Il buono, il brutto, il cattivo",
+    "year": 1967,
+    "genre": "western"
+  },
+  {
+    "id": 9,
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "year": 2001,
+    "genre": "adventure"
+  },
+  {
+    "id": 10,
+    "title": "Fight Club",
+    "year": 1999,
+    "genre": "drama"
+  }
+]

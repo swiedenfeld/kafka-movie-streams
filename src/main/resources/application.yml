@@ -1,0 +1,14 @@
+﻿spring:
+  application:
+    name: movie-streams
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    streams:
+      bootstrap-servers: localhost:9092
+      properties:
+        num.stream.threads: 2
+        topology.optimization: all
+        processing.guarantee: exactly_once
+logging.level.de.swiedenfeld.springbootkotlin: info
