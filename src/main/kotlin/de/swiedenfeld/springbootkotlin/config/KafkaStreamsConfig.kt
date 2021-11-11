@@ -47,6 +47,9 @@ class KafkaStreamsConfig {
     fun movieRatingsAggregateTopic(): NewTopic = NewTopic("movie-ratings-aggregate", 3, 1)
 
     @Bean
+    fun ticketPurchasesAndRatingsTopic(): NewTopic = NewTopic("ticket-purchases-and-ratings", 3, 1)
+
+    @Bean
     fun moviesTable(builder: StreamsBuilder): GlobalKTable<Int, Movie> =
         builder.globalTable("movies", Consumed.with(Integer(), JsonSerde(Movie::class.java)))
 
@@ -156,6 +159,13 @@ class KafkaStreamsConfig {
                 .withKeySerde(Integer())
                 .withValueSerde(JsonSerde(TicketPurchasesAndRating::class.java))
         )
+    }
+
+    @Bean
+    fun movieVisitsCountAndRatingsStream(movieVisitsCountAndRatingsTable: KTable<Int, TicketPurchasesAndRating>): KStream<Int, TicketPurchasesAndRating> {
+        val stream = movieVisitsCountAndRatingsTable.toStream()
+        stream.to("ticket-purchases-and-ratings");
+        return stream
     }
 
 }

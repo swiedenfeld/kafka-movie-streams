@@ -11,4 +11,4 @@
         num.stream.threads: 2
         topology.optimization: all
         processing.guarantee: exactly_once
-logging.level.de.swiedenfeld.springbootkotlin: info
+logging.level.de.swiedenfeld.springbootkotlin: debug
