@@ -1,0 +1,16 @@
+{
+  "config": {
+    "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+    "iterations": "1000000",
+    "kafka.topic": "ticket-purchases",
+    "key.converter": "org.apache.kafka.connect.converters.IntegerConverter",
+    "max.interval": "1000",
+    "name": "datagen-ticket-purchases",
+    "schema.keyfield": "id",
+    "schema.string": "{\"type\":\"record\",\"name\":\"movierating\",\"fields\":[{\"name\":\"id\",\"type\":{\"type\":\"int\",\"arg.properties\":{\"iteration\":{\"start\":1,\"step\":1}}}},{\"name\":\"visitorId\",\"type\":{\"type\":\"int\",\"arg.properties\":{\"range\":{\"min\":0,\"max\":7}}}},{\"name\":\"movieId\",\"type\":{\"type\":\"int\",\"arg.properties\":{\"range\":{\"min\":0,\"max\":10}}}}]}",
+    "tasks.max": "1",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false"
+  },
+  "name": "datagen-ticket-purchases"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "simple-elasticsearch-connector4",
+  "config": {
+    "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+    "tasks.max": "1",
+    "topics": "ticket-purchases-and-ratings",
+    "name": "simple-elasticsearch-connector4",
+    "connection.url": "http://opensearch-node1:9200",
+    "schema.ignore": true,
+    "type.name": "_doc"
+  }
+}
