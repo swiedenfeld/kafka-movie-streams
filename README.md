@@ -11,13 +11,121 @@ Follow these steps to bring everything up and running
 4. `cd kafka-connect && ./curl/connectors.sh`
 
 ### Data Model:
-Given some movies (`src/main/resources/movies.json`) and some people (`src/main/resources/movies.json`)
 
-Now, people randomly visit movies and rate them afterwards on a scale between 0.0 (very bad) and 1.0 (very good). 
-Those events are published to Kafka as soon as they happen via Kafka Connect
+There is a list of visitors (see ``\src\main\resources\visitors.json``). and a list of movies (see ``\src\main\resources\movies.json``).
 
-#### Ticket Purchases and Ratings
-Kafka Streams aggregates movies and ratings in a topic 'ticket-purchases-and-ratings'. That topic is exported to OpenSearch via Kafka Connect. 
+##### Ticket Purchases
+Visitors purchase tickets to movies randomly. Purchase events go to topic ``ticket-purchases``.
+
+```json
+{
+  "type": "record",
+  "name": "movierating",
+  "fields": [
+    {
+      "name": "id",
+      "type": {
+        "type": "int",
+        "arg.properties": {
+          "iteration": {
+            "start": 1,
+            "step": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "visitorId",
+      "type": {
+        "type": "int",
+        "arg.properties": {
+          "range": {
+            "min": 0,
+            "max": 7
+          }
+        }
+      }
+    },
+    {
+      "name": "movieId",
+      "type": {
+        "type": "int",
+        "arg.properties": {
+          "range": {
+            "min": 0,
+            "max": 10
+          }
+        }
+      }
+    },
+    {
+      "name": "rating",
+      "type": {
+        "type": "double",
+        "arg.properties": {
+          "range": {
+            "min": 0,
+            "max": 1
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+### Movie Ratings
+
+People rate movies randomly on a scale between 0.0 (very bad) and 1.0 (very good). Ratings happen independently of ticket purchases.
+Movie rating events go to topic ``movie-ratings``.
+
+```json
+{
+  "type": "record",
+  "name": "movierating",
+  "fields": [
+    {
+      "name": "id",
+      "type": {
+        "type": "int",
+        "arg.properties": {
+          "iteration": {
+            "start": 1,
+            "step": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "visitorId",
+      "type": {
+        "type": "int",
+        "arg.properties": {
+          "range": {
+            "min": 0,
+            "max": 7
+          }
+        }
+      }
+    },
+    {
+      "name": "movieId",
+      "type": {
+        "type": "int",
+        "arg.properties": {
+          "range": {
+            "min": 0,
+            "max": 10
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+#### Aggregation and Average rating per movie
+Kafka Streams app aggregates movies with their total visits and average ratings in a topic 'ticket-purchases-and-ratings'. That topic is exported to OpenSearch via Kafka Connect. 
 
 ### Servers
 * OpenSearch Dashboard http://localhost:5601
