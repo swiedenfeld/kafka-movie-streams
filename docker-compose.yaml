@@ -123,7 +123,16 @@ services:
       KAFKA_REST_DEBUG: "true"
     ports:
       - 8082:8082
-
+  ############################
+  # KAFDROP
+  ############################
+  kafdrop:
+    image: obsidiandynamics/kafdrop:latest
+    environment:
+      KAFKA_BROKERCONNECT: "kafka1:19092"
+      SERVER_SERVLET_CONTEXTPATH: "/"
+    ports:
+      - 9000:9000
   ############################
   # OPEN SEARCH
   ############################

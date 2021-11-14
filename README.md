@@ -129,3 +129,4 @@ Kafka Streams app aggregates movies with their total visits and average ratings 
 
 ### Servers
 * OpenSearch Dashboard http://localhost:5601
+* KafDrop Dashboard http://localhost:9000
