@@ -127,12 +127,32 @@ services:
   # KAFDROP
   ############################
   kafdrop:
-    image: obsidiandynamics/kafdrop:latest
+    image: obsidiandynamics/kafdrop:latest@sha256:b7ba8577ce395b1975b0ed98bb53cb6b13e7d32d5442188da1ce41c0838d1ce9
     environment:
       KAFKA_BROKERCONNECT: "kafka1:19092"
       SERVER_SERVLET_CONTEXTPATH: "/"
     ports:
       - 9000:9000
+    profiles:
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus@sha256:a8779cfe553e0331e9046268e26c539fa39ecf90d59836d828163e65e8f4fa35
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    profiles:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana@sha256:2f6e30f0998a190cd4c97225690f1fd8702498185385cb943233b9fa778c0a7b
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/custom.ini:/usr/share/grafana/conf/custom.ini
+      - grafana-storage:/var/lib/grafana
+    profiles:
+      - monitoring
+
   ############################
   # OPEN SEARCH
   ############################
@@ -201,3 +221,4 @@ volumes:
   zksingle-ksingle_zoo1-data:
   zksingle-ksingle_zoo1-log:
   opensearch-data1:
+  grafana-storage:

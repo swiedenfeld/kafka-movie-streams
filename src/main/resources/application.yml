@@ -10,4 +10,16 @@
         num.stream.threads: 2
         topology.optimization: all
         processing.guarantee: exactly_once
+  jmx:
+    enabled: true
 logging.level.de.swiedenfeld.springbootkotlin: debug
+
+management:
+  endpoint:
+    prometheus:
+      enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus

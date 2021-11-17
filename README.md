@@ -9,6 +9,7 @@ Follow these steps to bring everything up and running
 2. `sudo sysctl -p`
 3. `docker-compose up -d --build`
 4. `cd kafka-connect && ./curl/connectors.sh`
+5. Monitoring: `docker-compose --profile monitoring up -d`
 
 ### Data Model:
 
@@ -130,3 +131,4 @@ Kafka Streams app aggregates movies with their total visits and average ratings 
 ### Servers
 * OpenSearch Dashboard http://localhost:5601
 * KafDrop Dashboard http://localhost:9000
+* Grafana http://localhost:3000 - username/password is easy to guess. Configure Prometheus datasource to `http://prometheus:9090` 
